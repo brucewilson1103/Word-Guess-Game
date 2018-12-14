@@ -18,6 +18,7 @@ var losses = 0;
 var guessesLeft = 9;
 var guess = [];
 var pickedWordPlaceHolder = "";
+var pickedWord 
 
 function newgame() {
   cpuGuess = cpuChoices[Math.floor(Math.random() * cpuChoices.length)];
@@ -36,51 +37,54 @@ function newgame() {
   }
   console.log(pickedWordPlaceHolder);
   document.getElementById("placeholders").textContent = pickedWordPlaceHolder;
+
+  var html =
+    "<p> Wins: " + wins + "</p>" + "<p> Losses: " + losses +   "</p>" +
+    "<p> Guesses Left: " + guessesLeft + "</p>" +
+    "<p> Your Guesses so far: " +  guess.join(", ") +"</p>";
+
+  document.querySelector("#game").innerHTML = html;
 }
 
 newgame();
 document.onkeyup = function(event) {
   var userGuess = event.key;
+  pickedWordPlaceHolder = pickedWordPlaceHolder.split("");
 
   // // alex's help
-  for (var i = 0; i < pickedWord.length; i++) {
-    if (pickedWord[i].toLowerCase() === userGuess) {
-      pickedWordPlaceHolder[i] = pickedWord[i];
+  for (var i = 0; i < cpuGuess.length; i++) {
+    if (cpuGuess[i].toLowerCase() === userGuess) {
+        console.log("this hit");
+    
+      pickedWordPlaceHolder[i] = cpuGuess[i];
     }
   }
 
-  if (!pickedWordPlaceHolder.toLowerCase().includes(userGuess)) {
-    guessesLeft--;
-  }
+  pickedWordPlaceHolder = pickedWordPlaceHolder.join("");
 
-  //       // if userguess is a character in the computer choice, then make the character visible. If not display a line or a box for where the letter should go. Also if the user guesses wrong guessess left --.
-  if (userGuess === cpuGuess) {
-    wins++;
-    guessesLeft = 9;
-    guess = [];
-  } else {
+  document.getElementById("placeholders").textContent = pickedWordPlaceHolder;
+
+
+  if (!pickedWordPlaceHolder.toLowerCase().includes(userGuess)) {
     guessesLeft--;
     guess.push(userGuess);
   }
+
+  //       // if userguess is a character in the computer choice, then make the character visible. If not display a line or a box for where the letter should go. Also if the user guesses wrong guessess left --.
+  if (pickedWordPlaceHolder === cpuGuess) {
+    wins++;
+    newgame();
+  } 
+
   if (guessesLeft === 0) {
-    guessesLeft = 9;
     losses++;
-    guess = [];
+    newgame();
   }
 
   var html =
-    "<p> Wins: " +
-    wins +
-    "</p>" +
-    "<p> Losses: " +
-    losses +
-    "</p>" +
-    "<p> Guesses Left: " +
-    guessesLeft +
-    "</p>" +
-    "<p> Your Guesses so far: " +
-    guess.join(", ") +
-    "</p>";
+    "<p> Wins: " + wins + "</p>" + "<p> Losses: " + losses +   "</p>" +
+    "<p> Guesses Left: " + guessesLeft + "</p>" +
+    "<p> Your Guesses so far: " +  guess.join(", ") +"</p>";
 
   document.querySelector("#game").innerHTML = html;
 };
