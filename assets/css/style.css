@@ -17,3 +17,15 @@ body {
   height: 700px;
   margin: 0 auto;
 }
+
+
+#placeholders {
+  color: white;
+  letter-spacing: 20px;
+  font-size: 40px;
+  margin: 0 5%;
+}
+
+#game {
+  color: white;
+}
