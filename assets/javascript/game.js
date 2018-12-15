@@ -73,6 +73,7 @@ document.onkeyup = function(event) {
   //       // if userguess is a character in the computer choice, then make the character visible. If not display a line or a box for where the letter should go. Also if the user guesses wrong guessess left --.
   if (pickedWordPlaceHolder === cpuGuess) {
     wins++;
+    document.getElementById('visible').style.visibility = visible;
 // I am so proud of myself for adding in the audio below!!! 
     var audioElement = document.createElement('audio');
 audioElement.setAttribute('src', 'assets/javascript/JPtheme.m4a');
