@@ -4,6 +4,7 @@
 
 .white {
   color: white;
+  margin-left: 20px;
 }
 body {
 
@@ -28,4 +29,6 @@ body {
 
 #game {
   color: white;
+  padding: 5%;
+
 }
